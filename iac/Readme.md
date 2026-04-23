@@ -1,26 +1,42 @@
-# Despliegue
+# Proyecto Docker + Terraform
 
-Vamos a utilizar terraform.
-Lo primero es habilitar los proveedores, desde la carpeta donde se encuentra terraform
+## Descripción
+Este proyecto despliega una aplicación web, API y base de datos usando Docker y Terraform.
 
-```
+## Estructura
+- web: contiene HTML servido con nginx
+- api: backend en Node.js
+- iac: infraestructura con Terraform
+
+## Requisitos
+- Docker
+- Terraform
+
+## Pasos de ejecución
+
+### 1. Construir imágenes
+docker build -t lab/web ./web
+docker build -t lab/api ./api
+
+### 2. Inicializar Terraform
 cd iac
-```
-
-```
 terraform init
-```
 
-Deben documentar como crear los ambientes y seleccionar los ambientes
+### 3. Crear workspace
+terraform workspace new localhost
 
-terraform.tfvars:
-```
-web_port={
-    localhost = 4001
-    dev = 5001
-}
-api_port={
-    localhost = 4002
-    dev = 5002
-}
-```
+### 4. Desplegar infraestructura
+terraform apply
+
+## Puertos
+
+| Servicio | Puerto |
+|--------|--------|
+| Web | 4001 |
+| API | 4002 |
+| DB | 4003 |
+
+## Workspaces
+
+- localhost → puertos 400X
+- dev → puertos 500X
