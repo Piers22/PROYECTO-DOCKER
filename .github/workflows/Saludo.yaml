@@ -7,7 +7,7 @@ on:
       - develop
 
 env:
-  nombre: "Pierreluiggi Zevallos"
+  nombre: "Rider Zevallos"
 
 jobs:
   saludo:
